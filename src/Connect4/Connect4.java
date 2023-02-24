@@ -13,14 +13,12 @@ public class Connect4 extends GameStateImpl {
     //----------------------
     private char[][] board;
     private int playerMove = -1;    //nie zmieniać!
-    //private boolean playerMoveFlag;
 
     public void main() {
-        Scanner scanner = new Scanner(System.in);
-        //moze tu nowe gui??????? :jednak nie
+        //Scanner scanner = new Scanner(System.in);
         //Connect4 game = new Connect4();
         Connect4.setHFunction(new HeuristicFunction());
-        GameSearchAlgorithm algo = new MinMax();    //AlphaBetaPruning
+        GameSearchAlgorithm algo = new AlphaBetaPruning();    //AlphaBetaPruning
         algo.setInitial(this);  //game
         GUI sketch = new GUI(this, n, m, colorRed);
         GUI.runSketch(new String[] {"Connect4.GUI"}, sketch);
