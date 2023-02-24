@@ -4,6 +4,10 @@ import processing.core.*;
 public class Settings extends PApplet {
     private int state = 1;
     private double counter = 0;
+    boolean rowSliderOn = false;
+    boolean columnSliderOn = false;   //czy suwak włączony
+    private int rowsValue = 100;
+    private int columnsValue = 450;
 
     public void settings() {
         size(800, 800);
@@ -63,11 +67,10 @@ public class Settings extends PApplet {
             stroke(218,243,11);
             fill(218,243,11);
             text("WIERSZE", 100, 240);
+            text(str(rowsValueToNumber(rowsValue)), 300, 240);
 
             rect(100, 265, 175, 8);
-            stroke(0);
-            fill(0);
-            ellipse(100, 269, 24, 24);
+
 
             textSize(20);
             stroke(242,49,6);
@@ -77,10 +80,84 @@ public class Settings extends PApplet {
             rect(450, 265, 175, 8);
             stroke(0);
             fill(0);
-            ellipse(450, 269, 24, 24);
+
+            if (rowSliderOn) {
+                if (mouseX < 100)
+                    ellipse(100, 269, 24, 24);
+                else if (mouseX > 275)
+                    ellipse(275, 269, 24, 24);
+                if (mouseX > 100 && mouseX < 275)
+                    ellipse(mouseX, 269, 24, 24);
+            }
+            else {
+                ellipse(rowsValue, 269, 24, 24);
+            }
+
+            if (columnSliderOn) {
+                if (mouseX < 450)
+                    ellipse(450, 269, 24, 24);
+                else if (mouseX > 625)
+                    ellipse(625, 269, 24, 24);
+                if (mouseX > 450 && mouseX < 625)
+                    ellipse(mouseX, 269, 24, 24);
+            }
+            else {
+                ellipse(columnsValue, 269, 24, 24);
+            }
             if (keyPressed) {
                 noLoop();
             }
         }
+    }
+
+    public void mouseDragged() {
+        if (state == 2) {
+            if (mouseX > columnsValue - 24 && mouseX < columnsValue + 24)
+                columnSliderOn = true;
+
+            if (mouseX > rowsValue - 24 && mouseX < rowsValue + 24)
+                rowSliderOn = true;
+        }
+    }
+
+    public void mouseReleased() {
+        if (rowSliderOn) {
+            if (mouseX < 100)
+                rowsValue = 100;
+            else if (mouseX > 275)
+                rowsValue = 275;
+            else
+                rowsValue = mouseX;
+        }
+
+        if (columnSliderOn) {
+            if (mouseX < 450)
+                columnsValue = 450;
+            else if (mouseX > 625)
+                columnsValue = 625;
+            else
+                columnsValue = mouseX;
+        }
+
+        rowSliderOn = false;
+        columnSliderOn = false;
+    }
+
+    int rowsValueToNumber(int value) {
+        int number = 4;
+        for (int i = 100; i < 275; i += 25, number++)
+            if (value >= i && value < i + 25) {
+                return number;
+            }
+        return number - 1;
+    }
+
+    int columnsValueToNumber(int value) {
+        int number = 4;
+        for (int i = 450; i < 625; i += 25, number++)
+            if (value >= i && value < i + 25) {
+                return number;
+            }
+        return number - 1;
     }
 }
