@@ -9,8 +9,9 @@ public class Controller {
     public static void main(String args[]) {
         Settings sketch1 = new Settings();
         Settings.runSketch(new String[] {"Connect4.Settings"}, sketch1);
-//        GUI sketch2 = new GUI();
-//        GUI.runSketch(new String[] {"Connect4.GUI"}, sketch2);
+        while(sketch1.isLooping()) {
+            System.out.println("settings");
+        }
         Connect4 c4 = new Connect4();
         c4.main();
         System.out.println("xd");

@@ -50,8 +50,36 @@ public class Settings extends PApplet {
             }
         }
         if (state == 2) {    //ustawienia
-            if (mousePressed) {
+            background(73,113,137);
 
+            textSize(70);
+            fill(255,255,255);
+            text("USTAWIENIA", 100, 100);
+
+            textSize(30);
+            text("ROZMIAR PLANSZY:", 100, 200);
+
+            textSize(20);
+            stroke(218,243,11);
+            fill(218,243,11);
+            text("WIERSZE", 100, 240);
+
+            rect(100, 265, 175, 8);
+            stroke(0);
+            fill(0);
+            ellipse(100, 269, 24, 24);
+
+            textSize(20);
+            stroke(242,49,6);
+            fill(242,49,6);
+            text("KOLUMNY", 450, 240);
+
+            rect(450, 265, 175, 8);
+            stroke(0);
+            fill(0);
+            ellipse(450, 269, 24, 24);
+            if (keyPressed) {
+                noLoop();
             }
         }
     }
