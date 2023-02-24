@@ -6,9 +6,10 @@ import java.util.*;
 
 public class Connect4 extends GameStateImpl {
     public static int m = 6;      //liczba wierszy    (min 4) była final
-    public static int n = 7;      //liczba kolumn     (min 4) ta też
-    private static final boolean startingPlayer = true;        //true - rozpoczyna gracz, false - rozpoczyna AI
+    public static int n = 7;      //liczba kolumn     (min 4) ta też   ten 1 niżej też jest final
+    private static boolean startingPlayer = true;        //true - rozpoczyna gracz, false - rozpoczyna AI
     public static final char player = 'O', ai = 'X';       //symbole na planszy dla gracza i AI
+    private boolean colorRed = false;
     //----------------------
     private char[][] board;
     private int playerMove = -1;    //nie zmieniać!
@@ -21,7 +22,7 @@ public class Connect4 extends GameStateImpl {
         Connect4.setHFunction(new HeuristicFunction());
         GameSearchAlgorithm algo = new MinMax();    //AlphaBetaPruning
         algo.setInitial(this);  //game
-        GUI sketch = new GUI(this, n, m);
+        GUI sketch = new GUI(this, n, m, colorRed);
         GUI.runSketch(new String[] {"Connect4.GUI"}, sketch);
 
         while(!this.isWinner()) {
@@ -61,6 +62,18 @@ public class Connect4 extends GameStateImpl {
             for (int j = 0; j < n; j++)
                 board[i][j] = '-';
         this.setMaximizingTurnNow(startingPlayer);        //gracz jest maksymalizujący, a AI minimalizujące
+    }
+
+    Connect4(int rows, int columns, boolean player, boolean color) {
+        m = rows;
+        n = columns;
+        startingPlayer = player;
+        colorRed = color;
+        board = new char[m][n];
+        for(int i = 0; i < m; i++)
+            for (int j = 0; j < n; j++)
+                board[i][j] = '-';
+        this.setMaximizingTurnNow(startingPlayer);
     }
 
     Connect4(Connect4 parent) {     //konstruktor kopiujący

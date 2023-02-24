@@ -20,7 +20,7 @@ public class GUI extends PApplet {
 
     }
 
-    public GUI(Connect4 c4, int X, int Y) {
+    public GUI(Connect4 c4, int X, int Y, boolean color) {
         this.instance = c4;
         this.x = X;
         this.y = Y;
