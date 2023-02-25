@@ -10,15 +10,19 @@ public class GUI extends PApplet {
     private int AIMove = -1;
     int value = -1;
     boolean colorRed;
-    private boolean mouseOn = true;
+    private boolean mouseOn;
     private boolean flag = true;
     int gamestate = 3;
 
-    public GUI(Connect4 c4, int X, int Y, boolean color) {
+    public GUI(Connect4 c4, int X, int Y, boolean startingPlayer, boolean color) {
         this.instance = c4;
         this.x = X;
         this.y = Y;
         this.colorRed = color;
+        if (startingPlayer)
+            mouseOn = true;
+        else
+            mouseOn = false;
         board = new int[x];
         for(int i = 0; i < x; i++)
             board[i] = -1;

@@ -20,7 +20,7 @@ public class Connect4 extends GameStateImpl {
         Connect4.setHFunction(new HeuristicFunction());
         GameSearchAlgorithm algo = new AlphaBetaPruning();    //AlphaBetaPruning
         algo.setInitial(this);  //game
-        GUI sketch = new GUI(this, n, m, colorRed);
+        GUI sketch = new GUI(this, n, m, startingPlayer, colorRed);
         GUI.runSketch(new String[] {"Connect4.GUI"}, sketch);
 
         while(!this.isWinner()) {
