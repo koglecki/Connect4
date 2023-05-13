@@ -9,7 +9,7 @@ Aby uruchomić grę z poziomu kodu, należy uruchomić Controller.java.
 
 Przed rozpoczęciem rozgrywki można ustawić rozmiar planszy do gry, wybrać gracza rozpoczynającego, a także wybrać kolor gracza.
 
-Celem gry jest ułożenie ciągu czterech swoich żetonów poziomo, pionowo lub na ukos. Wygrywa gracz, który pierwszy je ułoży.
+Celem gry jest ułożenie ciągu czterech swoich żetonów poziomo, pionowo lub na ukos. Wygrywa gracz, który ułoży go jako pierwszy.
 
 Żetony kładzie się poprzez kliknięcie w odpowiednią kolumnę planszy. Żetony umieszczają się od dołu.
 
