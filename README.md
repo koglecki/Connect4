@@ -9,6 +9,9 @@ Celem gry jest ułożenie ciągu czterech swoich żetonów poziomo, pionowo lub 
 W grze tej występuje reguła sufitu tzn. jeżeli gracz położy swój żeton w ostatnim, najwyższym wierszu, to automatycznie zwycięża.
 Przed rozpoczęciem rozgrywki można ustawić rozmiar planszy do gry, wybrać gracza rozpoczynającego, a także wybrać kolor gracza.
 
+<img src="https://github.com/koglecki/Connect4/assets/122780250/ae4e4223-79e1-4ec2-8bb2-b3bb25ea914f" width="500" />
+
+
 ## Informacje o projekcie
 Cały projekt był tworzony z wykorzystaniem środowiska IntelliJ IDEA w Javie (wersja 15).
 Do stworzenia gry zostały wykorzystane biblioteki: SaC (do grafów i drzew gier)(https://pklesk.github.io/sac/) oraz Processing (intefejs graficzny)(https://processing.org/).
