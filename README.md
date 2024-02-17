@@ -14,6 +14,6 @@ Przed rozpoczęciem rozgrywki można ustawić rozmiar planszy do gry, wybrać gr
 
 ## Informacje o projekcie
 Cały projekt był tworzony z wykorzystaniem środowiska IntelliJ IDEA w Javie (wersja 15).
-Do stworzenia gry zostały wykorzystane biblioteki: SaC (do grafów i drzew gier)(https://pklesk.github.io/sac/) oraz Processing (intefejs graficzny)(https://processing.org/).
+Do stworzenia gry zostały wykorzystane biblioteki: [SaC](https://pklesk.github.io/sac/) (do grafów i drzew gier) oraz [Processing](https://processing.org/) (intefejs graficzny).
 Plik wykonywalny .jar znajduje się w folderze _out/artifacts/SI_jar_.
 Aby uruchomić grę z poziomu kodu, należy uruchomić _Controller.java_.
