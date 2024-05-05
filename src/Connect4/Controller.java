@@ -5,6 +5,7 @@ public class Controller {
     private int columns = 7;
     private boolean startingPlayer = true;
     private boolean colorRed = false;
+    private boolean ceilingRule = true;
 
     public static void main(String args[]) {
         Controller controller = new Controller();
@@ -14,7 +15,7 @@ public class Controller {
             System.out.println("settings");
         }
         System.out.println("end settings");
-        Connect4 c4 = new Connect4(controller.rows, controller.columns, controller.startingPlayer, controller.colorRed);
+        Connect4 c4 = new Connect4(controller.rows, controller.columns, controller.startingPlayer, controller.colorRed, controller.ceilingRule);
         c4.main();
     }
 

@@ -130,7 +130,7 @@ public class GUI extends PApplet {
                 flag = true;
                 mouseOn = true;
             }
-            if (instance.isWinner() && AIMove == -1) {
+            if ((instance.isWinner() && AIMove == -1) || instance.isDraw()) {
                 mouseOn = false;
                 gamestate = 4;
             }
@@ -141,12 +141,15 @@ public class GUI extends PApplet {
             drawCurrentCircles();
             textSize(30);
             fill(0, 408, 612);
-            if (instance.isMaximizingTurnNow()) {
-                text("Niestety, przegrales :(", 200, 650);
-            }
+            if (instance.isDraw())
+                text("Remis", 200, 650);
             else {
-                text("Wygrales, gratulacje!", 200, 650);
+                if (instance.isMaximizingTurnNow())
+                    text("Niestety, przegrales :(", 200, 650);
+                else
+                    text("Wygrales, gratulacje!", 200, 650);
             }
+
             textSize(20);
             text("Aby zakonczyc, nacisnij dowolny przycisk.", 300, 700);
             if (keyPressed)

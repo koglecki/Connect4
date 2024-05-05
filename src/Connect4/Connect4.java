@@ -10,6 +10,7 @@ public class Connect4 extends GameStateImpl {
     private static boolean startingPlayer = true;        //true - rozpoczyna gracz, false - rozpoczyna AI
     public static final char player = 'O', ai = 'X';       //symbole na planszy dla gracza i AI
     private boolean colorRed = false;
+    private static boolean ceilingRule = true;
     //----------------------
     private char[][] board;
     private int playerMove = -1;    //nie zmieniać!
@@ -17,13 +18,14 @@ public class Connect4 extends GameStateImpl {
     public void main() {
         //Scanner scanner = new Scanner(System.in);
         //Connect4 game = new Connect4();
-        Connect4.setHFunction(new HeuristicFunction());
         GameSearchAlgorithm algo = new AlphaBetaPruning();    //AlphaBetaPruning
         algo.setInitial(this);  //game
         GUI sketch = new GUI(this, n, m, startingPlayer, colorRed);
         GUI.runSketch(new String[] {"Connect4.GUI"}, sketch);
 
         while(!this.isWinner()) {
+            if(this.isDraw())
+                break;
             if(this.isMaximizingTurnNow()) {    //jeżeli tura gracza
                 while (true) {
                     System.out.println("player");
@@ -33,7 +35,6 @@ public class Connect4 extends GameStateImpl {
                         break;
                     }
                 }
-                //System.out.println(game);
             }
             else {
                 algo.execute();
@@ -44,14 +45,16 @@ public class Connect4 extends GameStateImpl {
                 int aiMove = Integer.parseInt(s);
                 this.makeMove(aiMove);
                 sketch.setAIMove(aiMove);
-                //System.out.println(game);
             }
         }
-        System.out.print("Winner: ");
-        if(this.isMaximizingTurnNow())
-            System.out.println("AI");
-        else
-            System.out.println("player");
+        if(this.isDraw())
+            System.out.println("Draw");
+        else {
+            if (this.isMaximizingTurnNow())
+                System.out.println("Winner: AI");
+            else
+                System.out.println("Winner: player");
+        }
     }
 
     Connect4() {
@@ -62,11 +65,16 @@ public class Connect4 extends GameStateImpl {
         this.setMaximizingTurnNow(startingPlayer);        //gracz jest maksymalizujący, a AI minimalizujące
     }
 
-    Connect4(int rows, int columns, boolean player, boolean color) {
+    Connect4(int rows, int columns, boolean player, boolean color, boolean ceiling) {
         m = rows;
         n = columns;
         startingPlayer = player;
         colorRed = color;
+        ceilingRule = ceiling;
+        if(ceilingRule)
+            Connect4.setHFunction(new HeuristicFunctionCeiling());
+        else
+            Connect4.setHFunction(new HeuristicFunction());
         board = new char[m][n];
         for(int i = 0; i < m; i++)
             for (int j = 0; j < n; j++)
@@ -141,9 +149,11 @@ public class Connect4 extends GameStateImpl {
     }
 
     public boolean isWinner() {
-        for(int i = 0; i < n; i++) {        //warunek sufitu
-            if(board[0][i] != '-')
-                return true;
+        if (ceilingRule) {
+            for (int i = 0; i < n; i++) {        //warunek sufitu
+                if (board[0][i] != '-')
+                    return true;
+            }
         }
 
         for(int i = 1; i < m; i++) {        //wiersze
@@ -182,6 +192,16 @@ public class Connect4 extends GameStateImpl {
             }
         }
         return false;
+    }
+
+    public boolean isDraw() {
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (board[i][j] == '-')
+                    return false;
+            }
+        }
+        return !isWinner();
     }
 
     @Override

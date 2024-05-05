@@ -3,7 +3,7 @@ package Connect4;
 import sac.State;
 import sac.StateFunction;
 
-public class HeuristicFunction extends StateFunction {
+public class HeuristicFunctionCeiling extends StateFunction {
     public double calculate(State state) {
         Connect4 connect4 = (Connect4) state;
 
