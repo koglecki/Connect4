@@ -156,7 +156,7 @@ public class Connect4 extends GameStateImpl {
             }
         }
 
-        for(int i = 1; i < m; i++) {        //wiersze
+        for(int i = 0; i < m; i++) {        //wiersze
             for(int j = 0; j < n - 3; j++) {
                 if(board[i][j] == player && board[i][j + 1] == player && board[i][j + 2] == player && board[i][j + 3] == player)
                     return true;

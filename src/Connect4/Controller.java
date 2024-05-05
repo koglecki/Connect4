@@ -5,7 +5,7 @@ public class Controller {
     private int columns = 7;
     private boolean startingPlayer = true;
     private boolean colorRed = false;
-    private boolean ceilingRule = true;
+    private boolean ceilingRule = false;
 
     public static void main(String args[]) {
         Controller controller = new Controller();
