@@ -5,10 +5,10 @@ import sac.game.*;
 import java.util.*;
 
 public class Connect4 extends GameStateImpl {
-    public static int m = 6;      //liczba wierszy    (min 4) była final
-    public static int n = 7;      //liczba kolumn     (min 4) ta też   ten 1 niżej też jest final
+    public static int m = 6;      //liczba wierszy
+    public static int n = 7;      //liczba kolumn
     private static boolean startingPlayer = true;        //true - rozpoczyna gracz, false - rozpoczyna AI
-    public static final char player = 'O', ai = 'X';       //symbole na planszy dla gracza i AI
+    public static final char player = 'O', ai = 'X';
     private boolean colorRed = false;
     private static boolean ceilingRule = true;
     //----------------------
@@ -16,8 +16,6 @@ public class Connect4 extends GameStateImpl {
     private int playerMove = -1;    //nie zmieniać!
 
     public void main() {
-        //Scanner scanner = new Scanner(System.in);
-        //Connect4 game = new Connect4();
         GameSearchAlgorithm algo = new AlphaBetaPruning();    //AlphaBetaPruning
         algo.setInitial(this);  //game
         GUI sketch = new GUI(this, n, m, startingPlayer, colorRed);

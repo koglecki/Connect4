@@ -11,6 +11,7 @@ public class Settings extends PApplet {
     private Controller instance;
     private boolean selectedPlayer = true;
     private boolean selectedRed = false;
+    private boolean ceilingRule = true;
     private boolean start = false;
 
     public Settings(Controller controller) {
@@ -116,7 +117,30 @@ public class Settings extends PApplet {
             text("GRACZ", 140, 398);
             textSize(20);
             text("AI", 420, 398);
-            ///
+
+            // reguła sufitu
+            stroke(255);
+            fill(255);
+            if (ceilingRule) {
+                fill(218,243,11);
+                rect(545, 500, 77, 40);
+                fill(255);
+                rect(545, 500, 77, 40);
+            }
+            else {
+                fill(218,243,11);
+                rect(660, 500, 77, 40);
+                fill(255);
+                rect(660, 500, 77, 40);
+            }
+            textSize(25);
+            fill(255,255,255);
+            text("REGULA SUFITU:", 540, 470);
+
+            textSize(25);
+            fill(0,0,0);
+            text("TAK", 560, 530);
+            text("NIE", 680, 530);
 
             ///kolor
             textSize(25);
@@ -125,27 +149,28 @@ public class Settings extends PApplet {
 
             stroke(218,243,11);
             fill(218,243,11);
-            rect(200, 500, 40, 40);
+            rect(110, 500, 40, 40);
 
             stroke(242,49,6);
             fill(242,49,6);
-            rect(400, 500, 40, 40);
+            rect(230, 500, 40, 40);
 
             stroke(255);
             fill(255);
             if (selectedRed) {
-                rect(390, 490 ,60, 10);
-                rect(390, 540 ,60, 10);
-                rect(390, 490 ,10, 60);
-                rect(440, 490 ,10, 60);
+                rect(220, 490 ,60, 10);
+                rect(220, 540 ,60, 10);
+                rect(220, 490 ,10, 60);
+                rect(270, 490 ,10, 60);
             }
             else {
-                rect(190, 490 ,60, 10);
-                rect(190, 540 ,60, 10);
-                rect(190, 490 ,10, 60);
-                rect(240, 490 ,10, 60);
+                rect(100, 490 ,60, 10);
+                rect(100, 540 ,60, 10);
+                rect(100, 490 ,10, 60);
+                rect(150, 490 ,10, 60);
             }
-            //
+            ///
+
             stroke(0);
             fill(0);
 
@@ -182,7 +207,7 @@ public class Settings extends PApplet {
             text("ROZPOCZNIJ GRE", 233, 670);
 
             if (start) {
-                instance.getParameters(rowsValueToNumber(rowsValue), columnsValueToNumber(columnsValue), selectedPlayer, selectedRed);
+                instance.getParameters(rowsValueToNumber(rowsValue), columnsValueToNumber(columnsValue), selectedPlayer, selectedRed, ceilingRule);
                 noLoop();
             }
         }
@@ -195,10 +220,15 @@ public class Settings extends PApplet {
             if (mouseX > 350 && mouseX < 510 && mouseY > 370 && mouseY < 410)
                 selectedPlayer = false;
 
-            if (mouseX > 200 && mouseX < 240 && mouseY > 500 && mouseY < 540)
+            if (mouseX > 110 && mouseX < 150 && mouseY > 500 && mouseY < 540)
                 selectedRed = false;
-            if (mouseX > 400 && mouseX < 440 && mouseY > 500 && mouseY < 540)
+            if (mouseX > 230 && mouseX < 270 && mouseY > 500 && mouseY < 540)
                 selectedRed = true;
+
+            if (mouseX > 660 && mouseX < 737 && mouseY > 500 && mouseY < 540)
+                ceilingRule = false;
+            if (mouseX > 545 && mouseX < 622 && mouseY > 500 && mouseY < 540)
+                ceilingRule = true;
 
             if (mouseX > 220 && mouseX < 540 && mouseY > 620 && mouseY < 700)
                 start = true;

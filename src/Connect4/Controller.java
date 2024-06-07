@@ -5,7 +5,7 @@ public class Controller {
     private int columns = 7;
     private boolean startingPlayer = true;
     private boolean colorRed = false;
-    private boolean ceilingRule = false;
+    private boolean ceilingRule = true;
 
     public static void main(String args[]) {
         Controller controller = new Controller();
@@ -19,11 +19,12 @@ public class Controller {
         c4.main();
     }
 
-    public void getParameters(int r, int c, boolean p, boolean color) {
+    public void getParameters(int r, int c, boolean p, boolean color, boolean ceilingRule) {
         this.rows = r;
         this.columns = c;
         this.startingPlayer = p;
         this.colorRed = color;
+        this.ceilingRule = ceilingRule;
     }
 
 }
